@@ -1,6 +1,7 @@
 import express, {Application } from "express";
 const app : Application = express();
 import dotenv from 'dotenv';
+import winston from "./utils/logger";
 import './db/conn'
 dotenv.config();
  
@@ -11,6 +12,10 @@ app.use(express.json());
 
 import { tourRoute } from "./routes/tourRoute";
 
+app.use((req, res, next) => {
+    winston.info(`${req.method} ${req.url}`);
+    next();
+  });
 app.use('/api/v1/tours',tourRoute);
 
 

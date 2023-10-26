@@ -14,12 +14,14 @@ const createTour = async(req:Request,res:Response) => {
         price
        })
 
-       if(tour){
-        return res.status(201).json({
-            status:"Success",
-            tour
-        })
+       if(!tour){
+        return res.status(404).json({Error:"Tour Not Found!"})
        }
+      
+       res.status(201).json({
+        status:"Success",
+        tour
+             })
     } catch (error) {
         if (error instanceof Error) {
             res.status(401).json({ Error: error.message });
