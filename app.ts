@@ -1,9 +1,10 @@
 import express, {Application } from "express";
 const app : Application = express();
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 import winston from "./utils/logger";
-import './db/conn'
 dotenv.config();
+
+import './db/conn'
  
 
 app.use(express.json()); 
